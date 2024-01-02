@@ -4,19 +4,17 @@ async function fetchSourceCode() {
     const response = await fetch(`https://cors-anywhere.herokuapp.com/${url}`);
     const text = await response.text();
 
-    // Tìm BlogId
     const blogIdRegex = /'blogId': '(\d+)'|targetBlogID=(\d+)/;
     const blogIdMatch = text.match(blogIdRegex);
     let blogId = blogIdMatch ? (blogIdMatch[1] ? blogIdMatch[1] : blogIdMatch[2]) : "Không tìm thấy BlogId";
 
-    // Tìm Title
     const titleRegex = /<title>(.*?)<\/title>/;
     const titleMatch = text.match(titleRegex);
     const title = titleMatch ? titleMatch[1] : "Không tìm thấy Title";
 
-    // Hiển thị BlogId và Title
-    document.getElementById('sourceCode').textContent = `BlogId: ${blogId}\n<b>Website: ${title}</b>`;
-  } catch (error) {
+    document.getElementById('blogId').textContent = `BlogId: ${blogId}`;
+    document.getElementById('title').textContent = `Title: ${title}`;
+    } catch (error) {
     console.error('Có lỗi xảy ra:', error);
   }
 }
