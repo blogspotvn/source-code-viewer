@@ -15,7 +15,7 @@ async function fetchSourceCode() {
     const title = titleMatch ? titleMatch[1] : "Không tìm thấy Title";
 
     // Hiển thị BlogId và Title
-    document.getElementById('sourceCode').textContent = `BlogId: ${blogId}\nWebsite: ${title}`;
+    document.getElementById('sourceCode').textContent = `BlogId: ${blogId}\n<b>Website: ${title}</b>`;
   } catch (error) {
     console.error('Có lỗi xảy ra:', error);
   }
