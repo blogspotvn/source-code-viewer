@@ -13,7 +13,13 @@ async function fetchSourceCode() {
   try {
     const response = await fetch(`https://cors-anywhere.herokuapp.com/${url}`);
     const text = await response.text();
-    document.getElementById('sourceCode').textContent = text;
+
+    // Sử dụng Regular Expression để tìm BlogId
+    const blogIdMatch = text.match(/'blogId': '(\d+)'/);
+    const blogId = blogIdMatch ? blogIdMatch[1] : "Không tìm thấy BlogId";
+
+    // Hiển thị BlogId
+    document.getElementById('sourceCode').textContent = `BlogId: ${blogId}`;
   } catch (error) {
     console.error('Có lỗi xảy ra:', error);
   }
