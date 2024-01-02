@@ -4,20 +4,18 @@ async function fetchSourceCode() {
     const response = await fetch(`https://cors-anywhere.herokuapp.com/${url}`);
     const text = await response.text();
 
-    // Sử dụng Regular Expression để tìm BlogId trong cả hai dạng
-    const regex = /'blogId': '(\d+)'|targetBlogID=(\d+)/;
-    const blogIdMatch = text.match(regex);
-    let blogId;
+    // Tìm BlogId
+    const blogIdRegex = /'blogId': '(\d+)'|targetBlogID=(\d+)/;
+    const blogIdMatch = text.match(blogIdRegex);
+    let blogId = blogIdMatch ? (blogIdMatch[1] ? blogIdMatch[1] : blogIdMatch[2]) : "Không tìm thấy BlogId";
 
-    if (blogIdMatch) {
-      // Kiểm tra xem BlogId được tìm thấy từ pattern nào
-      blogId = blogIdMatch[1] ? blogIdMatch[1] : blogIdMatch[2];
-    } else {
-      blogId = "Không tìm thấy BlogId";
-    }
+    // Tìm Title
+    const titleRegex = /<title>(.*?)<\/title>/;
+    const titleMatch = text.match(titleRegex);
+    const title = titleMatch ? titleMatch[1] : "Không tìm thấy Title";
 
-    // Hiển thị BlogId
-    document.getElementById('sourceCode').textContent = `BlogId: ${blogId}`;
+    // Hiển thị BlogId và Title
+    document.getElementById('sourceCode').textContent = `BlogId: ${blogId}\nTitle: ${title}`;
   } catch (error) {
     console.error('Có lỗi xảy ra:', error);
   }
