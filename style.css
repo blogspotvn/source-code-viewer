@@ -15,23 +15,25 @@ body {
 
 .url-input {
   width: 70%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #dddfe2;
+  display: block;
 }
 
 .view-button {
-  padding: 10px 20px;
-  background-color: #0056b3;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+    border-radius: 3px;
+    background: #005b53;
+    color: #fff!important;
+    text-decoration: none!important;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    border: 0;
 }
 
 .view-button:hover {
-  background-color: #003d82;
+  background-color: #000;
 }
 
 .source-code {
